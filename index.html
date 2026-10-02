@@ -6,19 +6,22 @@
 <title>Payment</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:#fff;
-  color:#292929;
+  color:#222;
 }
 
 .header{
-  height:85px;
-  background:#1688ed;
-  color:#fff;
+  height:84px;
+  background:#0d4273;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -27,68 +30,81 @@ body{
 }
 
 .container{
+  padding:26px 22px 35px;
   max-width:720px;
   margin:auto;
-  padding:22px 21px 35px;
 }
 
-.close-title{
-  font-size:24px;
+.count-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:35px;
+}
+
+.count-title{
+  font-size:27px;
   font-weight:700;
-  margin-bottom:10px;
 }
 
 .timer{
   display:flex;
-  justify-content:flex-end;
   align-items:center;
-  gap:4px;
-  margin-top:-40px;
-  margin-bottom:35px;
+  gap:5px;
+  font-size:25px;
+  font-weight:700;
 }
 
 .timer span{
-  background:#1688ed;
-  color:#fff;
-  padding:6px 8px;
+  background:#168ce5;
+  color:white;
+  padding:5px 8px;
   border-radius:6px;
-  font-size:21px;
-  font-weight:700;
+  min-width:43px;
+  text-align:center;
 }
 
-.timer b{font-size:20px}
+.timer b{
+  color:#555;
+}
 
-.info{
+.info-row{
   display:grid;
-  grid-template-columns:115px 1fr 92px;
+  grid-template-columns:1fr auto auto;
   align-items:center;
-  gap:7px;
-  margin:23px 0;
+  gap:14px;
+  margin-bottom:25px;
 }
 
-.label{font-size:22px}
+.label{
+  font-size:27px;
+}
 
 .value{
-  text-align:right;
-  font-size:23px;
+  font-size:27px;
   font-weight:700;
+  text-align:right;
   word-break:break-all;
 }
 
-.copy{
-  margin-left:8px;
-  padding:10px 13px;
-  background:#fff;
-  color:#398bd1;
-  border:2px solid #398bd1;
+.copy-btn{
+  border:2px solid #2e91db;
+  background:white;
+  color:#318bd0;
   border-radius:7px;
-  font-size:16px;
+  padding:12px 25px;
+  font-size:21px;
+  cursor:pointer;
+}
+
+.copy-btn:active{
+  transform:scale(.97);
 }
 
 .help{
-  color:#398bd1;
-  font-size:20px;
-  margin:32px 0;
+  color:#3b8ed5;
+  font-size:25px;
+  margin:35px 0 28px;
 }
 
 .methods{
@@ -99,232 +115,538 @@ body{
 
 .method{
   height:100px;
-  border:2px solid #e1e1e1;
-  border-radius:15px;
+  border:1px solid #ddd;
+  border-radius:14px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#fff;
+  font-size:29px;
   font-weight:700;
+  color:#333;
+  background:#fff;
 }
 
-.phonepe{color:#673ab7;font-size:29px}
-.paytm{color:#0875bd;font-size:35px}
-.gpay{color:#555;font-size:29px}
-.gpay b{color:#4285f4}
-.bhim{color:#555;font-size:30px;font-style:italic}
+.method:nth-child(1){color:#673ab7;}
+.method:nth-child(2){color:#123e76;}
+.method:nth-child(3){color:#444;}
+.method:nth-child(4){color:#555;}
 
-.ut-title{
-  color:#398bd1;
-  font-size:20px;
-  margin:34px 0 18px;
+.utr-help{
+  color:#3b8ed5;
+  font-size:23px;
+  margin:32px 0 20px;
 }
 
-.ut-row{
+.utr-box{
   display:flex;
   align-items:center;
   border-bottom:1px solid #ddd;
-  padding-bottom:8px;
+  padding-bottom:13px;
+  margin-bottom:25px;
 }
 
-.ut-label{
-  width:85px;
-  font-size:21px;
+.utr-label{
+  font-size:24px;
+  margin-right:35px;
 }
 
-.ut-input{
+.utr-box input{
   flex:1;
   border:0;
-  outline:0;
-  font-size:19px;
-  padding:8px;
+  outline:none;
+  font-size:21px;
+  color:#333;
+}
+
+.utr-box input::placeholder{
+  color:#bbb;
 }
 
 .submit{
   width:100%;
-  margin-top:25px;
-  padding:18px;
   border:0;
   border-radius:40px;
-  background:#1688ed;
-  color:#fff;
-  font-size:23px;
+  background:#168ce5;
+  color:white;
+  font-size:25px;
   font-weight:700;
-}
-
-.status{
-  display:none;
-  margin-top:18px;
-  padding:15px;
-  border-radius:10px;
-  background:#eef8ee;
-  color:#28752d;
-  font-size:17px;
-  text-align:center;
-}
-
-.notice-title{
-  color:#d52f36;
-  font-size:21px;
-  font-weight:700;
-  margin-top:35px;
+  padding:20px;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
 }
 
 .notice{
-  font-size:18px;
-  line-height:1.55;
-  margin-top:7px;
+  margin-top:38px;
 }
 
-.footer{
+.notice-title{
+  color:#d83232;
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.notice p{
+  margin:8px 0;
+  font-size:21px;
+  line-height:1.45;
+}
+
+.notice strong{
+  color:#d83232;
+}
+
+.bottom-methods{
+  text-align:center;
+  margin-top:48px;
+  font-size:25px;
+  font-weight:700;
+  color:#555;
+  word-spacing:15px;
+}
+
+.bottom-text{
   text-align:center;
   color:#777;
-  font-size:16px;
-  line-height:1.55;
-  margin-top:35px;
+  font-size:18px;
+  line-height:1.5;
+  margin-top:24px;
 }
 
-@media(max-width:500px){
-  .container{padding:21px}
-  .info{grid-template-columns:105px 1fr 88px}
-  .label{font-size:20px}
-  .value{font-size:21px}
+/* COPY notification */
+.toast{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:#08bd58;
+  color:white;
+  text-align:center;
+  padding:14px 10px;
+  font-size:20px;
+  font-weight:700;
+  z-index:9999;
+  transform:translateY(-100%);
+  transition:.25s ease;
+}
+
+.toast.show{
+  transform:translateY(0);
+}
+
+/* Notice modal */
+dialog{
+  width:calc(100% - 70px);
+  max-width:620px;
+  border:0;
+  border-radius:32px;
+  padding:0;
+  overflow:hidden;
+  box-shadow:0 15px 50px rgba(0,0,0,.3);
+}
+
+dialog::backdrop{
+  background:rgba(0,0,0,.65);
+}
+
+.modal{
+  padding:38px 35px 32px;
+}
+
+.modal-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  font-size:29px;
+  font-weight:700;
+  margin-bottom:35px;
+}
+
+.info-icon{
+  width:38px;
+  height:38px;
+  border:3px solid #3896df;
+  border-radius:50%;
+  color:#3896df;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.modal-content{
+  background:#edf4ff;
+  border-left:7px solid #168ce5;
+  border-radius:0 20px 20px 0;
+  padding:25px 22px;
+}
+
+.rule{
+  display:flex;
+  gap:16px;
+  margin-bottom:28px;
+  font-size:22px;
+  line-height:1.45;
+}
+
+.rule:last-child{
+  margin-bottom:0;
+}
+
+.number{
+  flex:none;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#218ee1;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:700;
+}
+
+.red{
+  color:#e74444;
+  font-weight:700;
+}
+
+.understand{
+  width:100%;
+  border:0;
+  border-radius:35px;
+  background:#168ce5;
+  color:white;
+  font-size:25px;
+  font-weight:700;
+  padding:19px;
+  margin-top:35px;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(22,140,229,.3);
+}
+
+@media(max-width:520px){
+
+  .header{
+    height:70px;
+    font-size:27px;
+  }
+
+  .container{
+    padding:27px 21px;
+  }
+
+  .count-title{
+    font-size:24px;
+  }
+
+  .timer{
+    font-size:20px;
+  }
+
+  .timer span{
+    min-width:39px;
+  }
+
+  .label,
+  .value{
+    font-size:25px;
+  }
+
+  .copy-btn{
+    font-size:19px;
+    padding:11px 22px;
+  }
+
+  .info-row{
+    grid-template-columns:1fr auto;
+  }
+
+  .info-row .value{
+    grid-column:1;
+    grid-row:2;
+    text-align:left;
+  }
+
+  .info-row .copy-btn{
+    grid-column:2;
+    grid-row:1 / span 2;
+  }
+
+  .help{
+    font-size:22px;
+  }
+
+  .method{
+    height:90px;
+    font-size:24px;
+  }
+
+  .utr-help{
+    font-size:21px;
+  }
+
+  dialog{
+    width:calc(100% - 38px);
+  }
+
+  .modal{
+    padding:32px 22px 25px;
+  }
+
+  .modal-title{
+    font-size:25px;
+  }
+
+  .rule{
+    font-size:19px;
+  }
+
+  .understand{
+    font-size:23px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">Payment</div>
+<div class="toast" id="toast"></div>
 
-<div class="container">
+<header class="header">
+  Payment
+</header>
 
-<div class="close-title">Order will be closed in:</div>
+<main class="container">
 
-<div class="timer">
-<span id="min">09</span>
-<b>:</b>
-<span id="sec">56</span>
-</div>
+  <div class="count-row">
+    <div class="count-title">Order will be closed in:</div>
 
-<div class="info">
-<div class="label">Amount</div>
-<div class="value" id="amount">₹ 2000</div>
-<button class="copy" onclick="copyValue('amount')">COPY</button>
-</div>
+    <div class="timer">
+      <span id="minutes">09</span>
+      <b>:</b>
+      <span id="seconds">59</span>
+    </div>
+  </div>
 
-<div class="info">
-<div class="label">VPA / UPI ID</div>
-<div class="value" id="upi">TEST-UPI-001</div>
-<button class="copy" onclick="copyValue('upi')">COPY</button>
-</div>
+  <div class="info-row">
+    <div class="label">Amount</div>
+    <div class="value">₹ 20400</div>
+    <button class="copy-btn" onclick="copyText('20400','Amount copied')">
+      COPY
+    </button>
+  </div>
 
-<div class="help">ⓘ How to transfer money ↗</div>
+  <div class="info-row">
+    <div class="label">VPA/UPI ID</div>
+    <div class="value">demo****@demo</div>
+    <button class="copy-btn" onclick="copyText('demo-user@demo','UPI copied')">
+      COPY
+    </button>
+  </div>
 
-<div class="methods">
-<div class="method phonepe">PhonePe</div>
-<div class="method paytm">paytm</div>
-<div class="method gpay"><b>G</b>&nbsp;Pay</div>
-<div class="method bhim">BHIM</div>
-</div>
+  <div class="help">
+    ? How to transfer money ↗
+  </div>
 
-<div class="ut-title">
-↓ Enter 12-digit transaction reference
-</div>
+  <div class="methods">
+    <div class="method">PhonePe</div>
+    <div class="method">Paytm</div>
+    <div class="method">G Pay</div>
+    <div class="method">BHIM</div>
+  </div>
 
-<div class="ut-row">
-<div class="ut-label">UTR</div>
+  <div class="utr-help">
+    ↓ Fill the UTR numbers after you done payment
+  </div>
 
-<input
-class="ut-input"
-id="utr"
-type="text"
-inputmode="numeric"
-maxlength="12"
-placeholder="12-digit number"
->
-</div>
+  <div class="utr-box">
+    <div class="utr-label">UTR</div>
+    <input
+      id="utr"
+      type="text"
+      inputmode="numeric"
+      maxlength="12"
+      placeholder="Input UTR number"
+    >
+  </div>
 
-<button class="submit" onclick="submitReference()">
-Submit
-</button>
+  <button class="submit" onclick="submitDemo()">
+    Submit UTR
+  </button>
 
-<div class="status" id="status">
-Reference received — verification pending.
-</div>
+  <section class="notice">
+    <div class="notice-title">Notice:</div>
 
-<div class="notice-title">Notice:</div>
+    <p>
+      1. One UPI can only transfer money <strong>once.</strong>
+    </p>
 
-<div class="notice">
-1. Please verify all information before submitting.<br>
-2. Incorrect reference information may require verification.
-</div>
+    <p>
+      2. Don't change the <strong>payment amount.</strong>
+      Otherwise, the order cannot be closed.
+    </p>
+  </section>
 
-<div class="footer">
-Payment Portal<br>
-Secure payment information
-</div>
+  <div class="bottom-methods">
+    PhonePe &nbsp;&nbsp; Paytm &nbsp;&nbsp; UPI
+  </div>
 
-</div>
+  <div class="bottom-text">
+    Demo payment interface<br>
+    No real payment processing or verification is performed.
+  </div>
+
+</main>
+
+
+<!-- STARTUP NOTICE -->
+
+<dialog id="noticeModal">
+
+  <div class="modal">
+
+    <div class="modal-title">
+      <div class="info-icon">!</div>
+      Important Notice
+    </div>
+
+    <div class="modal-content">
+
+      <div class="rule">
+        <div class="number">1</div>
+        <div>
+          <span class="red">One UPI ID</span>
+          can only be used for
+          <span class="red">one payment.</span>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="number">2</div>
+        <div>
+          <span class="red">Do not change</span>
+          the <span class="red">amount</span>,
+          otherwise, the order cannot be processed.
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="number">3</div>
+        <div>
+          Complete the payment
+          <span class="red">before</span>
+          the order <span class="red">expires.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="understand" onclick="closeNotice()">
+      I Understand
+    </button>
+
+  </div>
+
+</dialog>
+
 
 <script>
-const params=new URLSearchParams(window.location.search);
 
-const amount=params.get("amount");
-const upi=params.get("upi");
+/* OPEN NOTICE WHEN LINK LOADS */
 
-if(amount){
-document.getElementById("amount").textContent="₹ "+amount;
+window.addEventListener("load", function(){
+  const modal = document.getElementById("noticeModal");
+
+  if(typeof modal.showModal === "function"){
+    modal.showModal();
+  }
+});
+
+
+/* CLOSE NOTICE */
+
+function closeNotice(){
+  document.getElementById("noticeModal").close();
 }
 
-if(upi){
-document.getElementById("upi").textContent=upi;
+
+/* COPY */
+
+function copyText(text,message){
+
+  navigator.clipboard.writeText(text)
+    .then(function(){
+
+      showToast(message + " — " + text);
+
+    })
+    .catch(function(){
+
+      showToast("Copy unavailable");
+
+    });
 }
 
-function copyValue(id){
-const text=document.getElementById(id).textContent;
 
-if(navigator.clipboard){
-navigator.clipboard.writeText(text);
-}else{
-const area=document.createElement("textarea");
-area.value=text;
-document.body.appendChild(area);
-area.select();
-document.execCommand("copy");
-area.remove();
+/* GREEN COPY BAR */
+
+function showToast(message){
+
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(function(){
+    toast.classList.remove("show");
+  },2000);
 }
 
-alert("Copied");
+
+/* COUNTDOWN */
+
+let totalSeconds = 9 * 60 + 59;
+
+function countdown(){
+
+  if(totalSeconds <= 0){
+    totalSeconds = 0;
+  }
+
+  const min = Math.floor(totalSeconds / 60);
+  const sec = totalSeconds % 60;
+
+  document.getElementById("minutes").textContent =
+    String(min).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+    String(sec).padStart(2,"0");
+
+  if(totalSeconds > 0){
+    totalSeconds--;
+  }
 }
 
-function submitReference(){
+countdown();
+setInterval(countdown,1000);
 
-const utr=document.getElementById("utr").value.trim();
 
-if(!/^\d{12}$/.test(utr)){
-alert("Please enter exactly 12 digits.");
-return;
+/* DEMO UTR */
+
+function submitDemo(){
+
+  const utr = document.getElementById("utr").value.trim();
+
+  if(!/^\d{12}$/.test(utr)){
+    showToast("Enter a 12-digit demo reference");
+    return;
+  }
+
+  showToast("Reference received — demo verification pending");
 }
 
-document.getElementById("status").style.display="block";
-}
-
-let totalSeconds=596;
-
-setInterval(function(){
-
-if(totalSeconds<=0)return;
-
-totalSeconds--;
-
-document.getElementById("min").textContent=
-String(Math.floor(totalSeconds/60)).padStart(2,"0");
-
-document.getElementById("sec").textContent=
-String(totalSeconds%60).padStart(2,"0");
-
-},1000);
 </script>
 
 </body>
