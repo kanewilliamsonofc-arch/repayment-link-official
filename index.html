@@ -1,14 +1,12 @@
-<button class="submit" onclick="submitUTR()">
-    Submit UTR
-  </button>
-
-  <div class="notice-title">
-    Notice:
+<div class="notice">
+    1. Please verify all information before submitting.<br>
+    2. Do not submit incorrect transaction information.
   </div>
 
-  <div class="notice">
-    1. Please verify all payment details before submitting.<br>
-    2. Do not submit incorrect transaction information.
+  <div class="logos">
+    <div class="p">PhonePe</div>
+    <div class="t">paytm</div>
+    <div class="u">UPI</div>
   </div>
 
   <div class="footer">
@@ -19,67 +17,30 @@
 </div>
 
 <script>
+const params=new URLSearchParams(location.search);
 
-const params = new URLSearchParams(window.location.search);
+if(params.get("amount"))
+  document.getElementById("amount").textContent="₹ "+params.get("amount");
 
-const amount = params.get("amount");
-const upi = params.get("upi");
+if(params.get("upi"))
+  document.getElementById("upi").textContent=params.get("upi");
 
-if(amount){
-  document.getElementById("amount").textContent =
-    "₹ " + amount;
+function copyText(id){
+  navigator.clipboard.writeText(
+    document.getElementById(id).textContent
+  );
 }
 
-if(upi){
-  document.getElementById("upi").textContent =
-    upi;
-}
+let time=596;
 
-function copyValue(id){
-
-  const text =
-    document.getElementById(id).textContent;
-
-  navigator.clipboard.writeText(text);
-
-  alert("Copied");
-}
-
-function submitUTR(){
-
-  const utr =
-    document.getElementById("utr").value.trim();
-
-  if(!utr){
-    alert("Please enter the UTR number.");
-    return;
-  }
-
-  alert("Reference submitted.");
-}
-
-let totalSeconds = 596;
-
-setInterval(function(){
-
-  if(totalSeconds <= 0) return;
-
-  totalSeconds--;
-
-  const minutes =
-    Math.floor(totalSeconds / 60);
-
-  const seconds =
-    totalSeconds % 60;
-
-  document.getElementById("minutes").textContent =
-    String(minutes).padStart(2,"0");
-
-  document.getElementById("seconds").textContent =
-    String(seconds).padStart(2,"0");
-
+setInterval(()=>{
+  if(time<=0)return;
+  time--;
+  document.getElementById("min").textContent=
+    String(Math.floor(time/60)).padStart(2,"0");
+  document.getElementById("sec").textContent=
+    String(time%60).padStart(2,"0");
 },1000);
-
 </script>
 
 </body>
