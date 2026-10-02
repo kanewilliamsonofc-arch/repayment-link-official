@@ -11,56 +11,59 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-body{
+html,body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
+  padding:0;
+  width:100%;
   background:#fff;
   color:#222;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 .header{
-  height:84px;
-  background:#0d4273;
-  color:white;
+  height:55px;
+  background:#104779;
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:30px;
+  font-size:23px;
   font-weight:700;
 }
 
-.container{
-  padding:26px 22px 35px;
-  max-width:720px;
+.page{
+  width:100%;
+  max-width:680px;
   margin:auto;
+  padding:12px 20px 15px;
 }
 
-.count-row{
+.top{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:35px;
+  justify-content:space-between;
+  margin-bottom:14px;
 }
 
-.count-title{
-  font-size:27px;
+.title{
+  font-size:17px;
   font-weight:700;
 }
 
 .timer{
   display:flex;
   align-items:center;
-  gap:5px;
-  font-size:25px;
+  gap:3px;
+  font-size:16px;
   font-weight:700;
 }
 
 .timer span{
-  background:#168ce5;
-  color:white;
-  padding:5px 8px;
-  border-radius:6px;
-  min-width:43px;
+  min-width:32px;
+  padding:4px 5px;
+  background:#168fe0;
+  color:#fff;
+  border-radius:5px;
   text-align:center;
 }
 
@@ -68,343 +71,266 @@ body{
   color:#555;
 }
 
-.info-row{
+.row{
   display:grid;
   grid-template-columns:1fr auto auto;
   align-items:center;
-  gap:14px;
-  margin-bottom:25px;
+  gap:9px;
+  margin-bottom:11px;
 }
 
 .label{
-  font-size:27px;
+  font-size:17px;
 }
 
 .value{
-  font-size:27px;
+  font-size:18px;
   font-weight:700;
   text-align:right;
-  word-break:break-all;
 }
 
-.copy-btn{
-  border:2px solid #2e91db;
-  background:white;
-  color:#318bd0;
-  border-radius:7px;
-  padding:12px 25px;
-  font-size:21px;
+.copy{
+  border:2px solid #3c91cf;
+  background:#fff;
+  color:#3488c4;
+  border-radius:6px;
+  padding:7px 16px;
+  font-size:14px;
+  font-weight:600;
   cursor:pointer;
 }
 
-.copy-btn:active{
+.copy:active{
   transform:scale(.97);
 }
 
 .help{
-  color:#3b8ed5;
-  font-size:25px;
-  margin:35px 0 28px;
+  color:#398ccc;
+  font-size:16px;
+  margin:16px 0 11px;
 }
 
-.methods{
+.apps{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:20px;
+  gap:7px;
 }
 
-.method{
-  height:100px;
+.app{
+  height:55px;
   border:1px solid #ddd;
-  border-radius:14px;
+  border-radius:9px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:29px;
-  font-weight:700;
-  color:#333;
   background:#fff;
+  font-size:17px;
+  font-weight:700;
 }
 
-.method:nth-child(1){color:#673ab7;}
-.method:nth-child(2){color:#123e76;}
-.method:nth-child(3){color:#444;}
-.method:nth-child(4){color:#555;}
+.app:nth-child(1){color:#673ab7}
+.app:nth-child(2){color:#123e76}
+.app:nth-child(3){color:#444}
+.app:nth-child(4){color:#555}
 
 .utr-help{
-  color:#3b8ed5;
-  font-size:23px;
-  margin:32px 0 20px;
+  color:#398ccc;
+  font-size:15px;
+  margin:16px 0 8px;
 }
 
-.utr-box{
+.utr{
   display:flex;
   align-items:center;
   border-bottom:1px solid #ddd;
-  padding-bottom:13px;
-  margin-bottom:25px;
+  padding-bottom:7px;
+  margin-bottom:10px;
 }
 
-.utr-label{
-  font-size:24px;
-  margin-right:35px;
+.utr label{
+  font-size:16px;
+  margin-right:20px;
 }
 
-.utr-box input{
+.utr input{
   flex:1;
+  min-width:0;
   border:0;
-  outline:none;
-  font-size:21px;
-  color:#333;
-}
-
-.utr-box input::placeholder{
-  color:#bbb;
+  outline:0;
+  background:transparent;
+  font-size:15px;
 }
 
 .submit{
   width:100%;
   border:0;
-  border-radius:40px;
-  background:#168ce5;
-  color:white;
-  font-size:25px;
+  border-radius:28px;
+  padding:11px;
+  background:#168fe0;
+  color:#fff;
+  font-size:17px;
   font-weight:700;
-  padding:20px;
   cursor:pointer;
-  box-shadow:0 4px 10px rgba(0,0,0,.12);
 }
 
 .notice{
-  margin-top:38px;
+  margin-top:14px;
 }
 
-.notice-title{
+.notice h3{
+  margin:0 0 5px;
   color:#d83232;
-  font-size:24px;
-  font-weight:700;
-  margin-bottom:8px;
+  font-size:17px;
 }
 
 .notice p{
-  margin:8px 0;
-  font-size:21px;
-  line-height:1.45;
+  margin:4px 0;
+  font-size:14px;
+  line-height:1.35;
 }
 
 .notice strong{
   color:#d83232;
 }
 
-.bottom-methods{
+.private{
   text-align:center;
-  margin-top:48px;
-  font-size:25px;
-  font-weight:700;
-  color:#555;
-  word-spacing:15px;
+  color:#888;
+  font-size:10px;
+  margin-top:8px;
 }
 
-.bottom-text{
-  text-align:center;
-  color:#777;
-  font-size:18px;
-  line-height:1.5;
-  margin-top:24px;
-}
 
-/* COPY notification */
+/* Green copy/status bar */
+
 .toast{
   position:fixed;
   top:0;
   left:0;
   width:100%;
+  padding:11px 8px;
   background:#08bd58;
-  color:white;
+  color:#fff;
   text-align:center;
-  padding:14px 10px;
-  font-size:20px;
+  font-size:16px;
   font-weight:700;
-  z-index:9999;
   transform:translateY(-100%);
   transition:.25s ease;
+  z-index:9999;
 }
 
 .toast.show{
   transform:translateY(0);
 }
 
-/* Notice modal */
+
+/* Startup popup */
+
 dialog{
-  width:calc(100% - 70px);
-  max-width:620px;
-  border:0;
-  border-radius:32px;
+  width:calc(100% - 38px);
+  max-width:600px;
   padding:0;
+  border:0;
+  border-radius:25px;
   overflow:hidden;
   box-shadow:0 15px 50px rgba(0,0,0,.3);
 }
 
 dialog::backdrop{
-  background:rgba(0,0,0,.65);
+  background:rgba(0,0,0,.62);
 }
 
 .modal{
-  padding:38px 35px 32px;
+  padding:23px 18px 18px;
 }
 
 .modal-title{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  font-size:29px;
+  text-align:center;
+  font-size:22px;
   font-weight:700;
-  margin-bottom:35px;
+  margin-bottom:18px;
 }
 
-.info-icon{
-  width:38px;
-  height:38px;
-  border:3px solid #3896df;
-  border-radius:50%;
-  color:#3896df;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-}
-
-.modal-content{
+.rules{
+  padding:16px 13px;
   background:#edf4ff;
-  border-left:7px solid #168ce5;
-  border-radius:0 20px 20px 0;
-  padding:25px 22px;
+  border-left:6px solid #198ee0;
+  border-radius:0 15px 15px 0;
 }
 
 .rule{
   display:flex;
-  gap:16px;
-  margin-bottom:28px;
-  font-size:22px;
-  line-height:1.45;
+  gap:10px;
+  font-size:15px;
+  line-height:1.4;
+  margin-bottom:14px;
 }
 
 .rule:last-child{
   margin-bottom:0;
 }
 
-.number{
+.num{
   flex:none;
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  background:#218ee1;
-  color:white;
+  width:27px;
+  height:27px;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+  background:#218ee0;
+  color:#fff;
+  border-radius:50%;
   font-weight:700;
 }
 
 .red{
-  color:#e74444;
+  color:#e64242;
   font-weight:700;
 }
 
 .understand{
   width:100%;
+  margin-top:18px;
+  padding:12px;
   border:0;
-  border-radius:35px;
-  background:#168ce5;
-  color:white;
-  font-size:25px;
+  border-radius:28px;
+  background:#168fe0;
+  color:#fff;
+  font-size:18px;
   font-weight:700;
-  padding:19px;
-  margin-top:35px;
   cursor:pointer;
-  box-shadow:0 5px 15px rgba(22,140,229,.3);
 }
+
+
+/* Mobile */
 
 @media(max-width:520px){
 
   .header{
-    height:70px;
-    font-size:27px;
+    height:55px;
+    font-size:23px;
   }
 
-  .container{
-    padding:27px 21px;
+  .page{
+    padding:12px 20px 15px;
   }
 
-  .count-title{
-    font-size:24px;
-  }
-
-  .timer{
-    font-size:20px;
-  }
-
-  .timer span{
-    min-width:39px;
-  }
-
-  .label,
-  .value{
-    font-size:25px;
-  }
-
-  .copy-btn{
-    font-size:19px;
-    padding:11px 22px;
-  }
-
-  .info-row{
+  .row{
     grid-template-columns:1fr auto;
   }
 
-  .info-row .value{
+  .value{
     grid-column:1;
-    grid-row:2;
     text-align:left;
   }
 
-  .info-row .copy-btn{
+  .copy{
     grid-column:2;
     grid-row:1 / span 2;
   }
 
-  .help{
-    font-size:22px;
-  }
-
-  .method{
-    height:90px;
-    font-size:24px;
-  }
-
-  .utr-help{
-    font-size:21px;
-  }
-
-  dialog{
-    width:calc(100% - 38px);
-  }
-
-  .modal{
-    padding:32px 22px 25px;
-  }
-
-  .modal-title{
-    font-size:25px;
-  }
-
-  .rule{
-    font-size:19px;
-  }
-
-  .understand{
-    font-size:23px;
+  .app{
+    height:54px;
   }
 }
 </style>
@@ -412,138 +338,242 @@ dialog::backdrop{
 
 <body>
 
-<div class="toast" id="toast"></div>
+<div id="toast" class="toast"></div>
 
-<header class="header">
+
+<div class="header">
   Payment
-</header>
+</div>
 
-<main class="container">
 
-  <div class="count-row">
-    <div class="count-title">Order will be closed in:</div>
+<div class="page">
+
+  <div class="top">
+
+    <div class="title">
+      Order will be closed in:
+    </div>
 
     <div class="timer">
-      <span id="minutes">09</span>
+      <span id="min">09</span>
       <b>:</b>
-      <span id="seconds">59</span>
+      <span id="sec">59</span>
     </div>
+
   </div>
 
-  <div class="info-row">
-    <div class="label">Amount</div>
-    <div class="value">₹ 20400</div>
-    <button class="copy-btn" onclick="copyText('20400','Amount copied')">
+
+  <!-- Amount -->
+
+  <div class="row">
+
+    <div class="label">
+      Amount
+    </div>
+
+    <div class="value">
+      ₹ 20400
+    </div>
+
+    <button
+      class="copy"
+      onclick="copyValue('20400','Amount copied')">
       COPY
     </button>
+
   </div>
 
-  <div class="info-row">
-    <div class="label">VPA/UPI ID</div>
-    <div class="value">demo****@demo</div>
-    <button class="copy-btn" onclick="copyText('demo-user@demo','UPI copied')">
+
+  <!-- VPA -->
+
+  <div class="row">
+
+    <div class="label">
+      VPA/UPI ID
+    </div>
+
+    <div class="value">
+      test****@demo
+    </div>
+
+    <button
+      class="copy"
+      onclick="copyValue('test-user@demo','UPI copied')">
       COPY
     </button>
+
   </div>
+
 
   <div class="help">
     ? How to transfer money ↗
   </div>
 
-  <div class="methods">
-    <div class="method">PhonePe</div>
-    <div class="method">Paytm</div>
-    <div class="method">G Pay</div>
-    <div class="method">BHIM</div>
+
+  <!-- Payment method names -->
+
+  <div class="apps">
+
+    <div class="app">
+      PhonePe
+    </div>
+
+    <div class="app">
+      Paytm
+    </div>
+
+    <div class="app">
+      G Pay
+    </div>
+
+    <div class="app">
+      BHIM
+    </div>
+
   </div>
+
 
   <div class="utr-help">
     ↓ Fill the UTR numbers after you done payment
   </div>
 
-  <div class="utr-box">
-    <div class="utr-label">UTR</div>
+
+  <div class="utr">
+
+    <label>
+      UTR
+    </label>
+
     <input
       id="utr"
       type="text"
-      inputmode="numeric"
       maxlength="12"
-      placeholder="Input UTR number"
-    >
+      inputmode="numeric"
+      placeholder="Input UTR number">
+
   </div>
 
-  <button class="submit" onclick="submitDemo()">
+
+  <button
+    class="submit"
+    onclick="submitReference()">
     Submit UTR
   </button>
 
-  <section class="notice">
-    <div class="notice-title">Notice:</div>
+
+  <!-- Notice -->
+
+  <div class="notice">
+
+    <h3>
+      Tips:
+    </h3>
 
     <p>
-      1. One UPI can only transfer money <strong>once.</strong>
+      !!! One UPI can only transfer money
+      <strong>ONCE.</strong>
     </p>
 
     <p>
-      2. Don't change the <strong>payment amount.</strong>
-      Otherwise, the order cannot be closed.
+      !!! <strong>DO NOT CHANGE</strong>
+      the payment <strong>AMOUNT &amp; UPI.</strong>
     </p>
-  </section>
 
-  <div class="bottom-methods">
-    PhonePe &nbsp;&nbsp; Paytm &nbsp;&nbsp; UPI
+    <p>
+      !!! <strong>DO NOT</strong> transfer money
+      in the UPI friend <strong>CHAT window</strong> again.
+    </p>
+
+    <p>
+      Otherwise, the order <strong>CANNOT</strong> be completed.
+    </p>
+
+    <p>
+      After payment is completed, please fill in the UTR.
+    </p>
+
   </div>
 
-  <div class="bottom-text">
-    Demo payment interface<br>
-    No real payment processing or verification is performed.
+
+  <div class="private">
+    Private UI
   </div>
 
-</main>
+</div>
 
 
-<!-- STARTUP NOTICE -->
+<!-- Startup Notice -->
 
 <dialog id="noticeModal">
 
   <div class="modal">
 
     <div class="modal-title">
-      <div class="info-icon">!</div>
       Important Notice
     </div>
 
-    <div class="modal-content">
+    <div class="rules">
 
       <div class="rule">
-        <div class="number">1</div>
+
+        <div class="num">
+          1
+        </div>
+
         <div>
-          <span class="red">One UPI ID</span>
+          <span class="red">
+            One test UPI ID
+          </span>
           can only be used for
-          <span class="red">one payment.</span>
+          <span class="red">
+            one test payment.
+          </span>
         </div>
+
       </div>
 
-      <div class="rule">
-        <div class="number">2</div>
-        <div>
-          <span class="red">Do not change</span>
-          the <span class="red">amount</span>,
-          otherwise, the order cannot be processed.
-        </div>
-      </div>
 
       <div class="rule">
-        <div class="number">3</div>
-        <div>
-          Complete the payment
-          <span class="red">before</span>
-          the order <span class="red">expires.</span>
+
+        <div class="num">
+          2
         </div>
+
+        <div>
+          <span class="red">
+            Do not change
+          </span>
+          the test
+          <span class="red">
+            amount.
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="rule">
+
+        <div class="num">
+          3
+        </div>
+
+        <div>
+          Complete the test interaction
+          <span class="red">
+            before
+          </span>
+          the timer expires.
+        </div>
+
       </div>
 
     </div>
 
-    <button class="understand" onclick="closeNotice()">
+
+    <button
+      class="understand"
+      onclick="closeModal()">
       I Understand
     </button>
 
@@ -554,97 +584,168 @@ dialog::backdrop{
 
 <script>
 
-/* OPEN NOTICE WHEN LINK LOADS */
+/* Startup popup */
 
-window.addEventListener("load", function(){
-  const modal = document.getElementById("noticeModal");
+window.addEventListener("load",function(){
 
-  if(typeof modal.showModal === "function"){
+  const modal =
+    document.getElementById("noticeModal");
+
+  if(
+    modal &&
+    typeof modal.showModal === "function"
+  ){
     modal.showModal();
   }
+
 });
 
 
-/* CLOSE NOTICE */
+/* Close popup */
 
-function closeNotice(){
-  document.getElementById("noticeModal").close();
+function closeModal(){
+
+  document
+    .getElementById("noticeModal")
+    .close();
+
 }
 
 
-/* COPY */
+/* Copy */
 
-function copyText(text,message){
+function copyValue(value,message){
 
-  navigator.clipboard.writeText(text)
-    .then(function(){
+  if(navigator.clipboard){
 
-      showToast(message + " — " + text);
+    navigator.clipboard.writeText(value)
+      .then(function(){
 
-    })
-    .catch(function(){
+        showToast(
+          message + " — " + value
+        );
 
-      showToast("Copy unavailable");
+      })
+      .catch(function(){
 
-    });
+        fallbackCopy(value,message);
+
+      });
+
+  }else{
+
+    fallbackCopy(value,message);
+
+  }
+
 }
 
 
-/* GREEN COPY BAR */
+/* Backup copy */
+
+function fallbackCopy(value,message){
+
+  const textarea =
+    document.createElement("textarea");
+
+  textarea.value=value;
+
+  textarea.style.position="fixed";
+  textarea.style.opacity="0";
+
+  document.body.appendChild(textarea);
+
+  textarea.select();
+
+  try{
+
+    document.execCommand("copy");
+
+    showToast(
+      message + " — " + value
+    );
+
+  }catch(error){
+
+    showToast("Copy unavailable");
+
+  }
+
+  document.body.removeChild(textarea);
+
+}
+
+
+/* Green bar */
 
 function showToast(message){
 
-  const toast = document.getElementById("toast");
+  const toast =
+    document.getElementById("toast");
 
-  toast.textContent = message;
+  toast.textContent=message;
+
   toast.classList.add("show");
 
   setTimeout(function(){
+
     toast.classList.remove("show");
+
   },2000);
+
 }
 
 
-/* COUNTDOWN */
+/* Countdown */
 
-let totalSeconds = 9 * 60 + 59;
+let totalSeconds=599;
 
-function countdown(){
+function updateCountdown(){
 
-  if(totalSeconds <= 0){
-    totalSeconds = 0;
-  }
+  const minutes =
+    Math.floor(totalSeconds / 60);
 
-  const min = Math.floor(totalSeconds / 60);
-  const sec = totalSeconds % 60;
+  const seconds =
+    totalSeconds % 60;
 
-  document.getElementById("minutes").textContent =
-    String(min).padStart(2,"0");
+  document.getElementById("min").textContent =
+    String(minutes).padStart(2,"0");
 
-  document.getElementById("seconds").textContent =
-    String(sec).padStart(2,"0");
+  document.getElementById("sec").textContent =
+    String(seconds).padStart(2,"0");
 
-  if(totalSeconds > 0){
+  if(totalSeconds>0){
     totalSeconds--;
   }
+
 }
 
-countdown();
-setInterval(countdown,1000);
+updateCountdown();
+
+setInterval(updateCountdown,1000);
 
 
-/* DEMO UTR */
+/* Reference status */
 
-function submitDemo(){
+function submitReference(){
 
-  const utr = document.getElementById("utr").value.trim();
+  const value =
+    document.getElementById("utr").value.trim();
 
-  if(!/^\d{12}$/.test(utr)){
-    showToast("Enter a 12-digit demo reference");
+  if(!/^\d{12}$/.test(value)){
+
+    showToast(
+      "Enter a 12-digit reference"
+    );
+
     return;
+
   }
 
-  showToast("Reference received — demo verification pending");
+  showToast(
+    "Reference received — verification pending"
+  );
+
 }
 
 </script>
