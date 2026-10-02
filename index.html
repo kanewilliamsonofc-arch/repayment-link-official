@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f8fa;
+  color:#252525;
+}
+
+.header{
+  background:#1688ed;
+  color:#fff;
+  text-align:center;
+  padding:16px;
+  font-size:25px;
+  font-weight:700;
+}
+
+.container{
+  max-width:680px;
+  margin:auto;
+  padding:22px;
+}
+
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 3px 14px rgba(0,0,0,.08);
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.label{
+  font-size:17px;
+  color:#555;
+}
+
+.value{
+  font-size:23px;
+  font-weight:700;
+  word-break:break-all;
+}
+
+.copy{
+  border:1px solid #1688ed;
+  background:#fff;
+  color:#1688ed;
+  padding:9px 18px;
+  border-radius:7px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.input{
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  font-size:16px;
+  outline:none;
+}
+
+.button{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:16px;
+  margin-top:15px;
+  background:#1688ed;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+}
+
+.notice{
+  color:#555;
+  line-height:1.6;
+}
+
+@media(max-width:500px){
+  .container{padding:16px}
+  .row{align-items:flex-start}
+  .value{font-size:20px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Payment</div>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="row">
+      <div class="label">Amount</div>
+
+      <div style="text-align:right">
+        <div class="value" id="amount">₹ 0</div>
+        <button class="copy" onclick="copyText('amount')">
+          COPY
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label">Payment Reference</div>
+
+      <div style="text-align:right">
+        <div class="value" id="reference">---</div>
+        <button class="copy" onclick="copyText('reference')">
+          COPY
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="label" style="margin-bottom:10px">
+      Transaction / Reference Number
+    </div>
+
+    <input
+      id="transaction"
+      class="input"
+      type="text"
+      placeholder="Enter transaction number"
+    >
+
+    <button class="button" onclick="submitPayment()">
+      Submit
+    </button>
+
+  </div>
+
+  <div class="card">
+    <div class="notice">
+      Please make sure the payment details are correct before submitting
+      your transaction reference.
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const amount = params.get("amount");
+const reference = params.get("reference");
+
+if(amount){
+  document.getElementById("amount").textContent = "₹ " + amount;
+}
+
+if(reference){
+  document.getElementById("reference").textContent = reference;
+}
+
+function copyText(id){
+
+  const text =
+    document.getElementById(id).textContent;
+
+  navigator.clipboard.writeText(text);
+
+  alert("Copied");
+}
+
+function submitPayment(){
+
+  const transaction =
+    document.getElementById("transaction").value.trim();
+
+  if(!transaction){
+    alert("Please enter the transaction number.");
+    return;
+  }
+
+  alert("Your transaction reference has been submitted.");
+}
+
+</script>
+
+</body>
+</html>
