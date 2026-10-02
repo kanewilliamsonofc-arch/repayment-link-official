@@ -1,15 +1,4 @@
-<div class="ut-row">
-    <div class="ut-label">UTR</div>
-
-    <input
-      class="ut-input"
-      id="utr"
-      type="text"
-      placeholder="Input UTR number"
-    >
-  </div>
-
-  <button class="submit" onclick="submitReference()">
+<button class="submit" onclick="submitUTR()">
     Submit UTR
   </button>
 
@@ -18,7 +7,7 @@
   </div>
 
   <div class="notice">
-    1. Please verify the payment details before continuing.<br>
+    1. Please verify all payment details before submitting.<br>
     2. Do not submit incorrect transaction information.
   </div>
 
@@ -37,55 +26,57 @@ const amount = params.get("amount");
 const upi = params.get("upi");
 
 if(amount){
-  document.getElementById("amount").textContent = "₹ " + amount;
+  document.getElementById("amount").textContent =
+    "₹ " + amount;
 }
 
 if(upi){
-  document.getElementById("upi").textContent = upi;
+  document.getElementById("upi").textContent =
+    upi;
 }
 
 function copyValue(id){
 
-  const value =
+  const text =
     document.getElementById(id).textContent;
 
-  navigator.clipboard.writeText(value);
+  navigator.clipboard.writeText(text);
 
   alert("Copied");
 }
 
-function submitReference(){
+function submitUTR(){
 
   const utr =
     document.getElementById("utr").value.trim();
 
   if(!utr){
-    alert("Please enter the reference number.");
+    alert("Please enter the UTR number.");
     return;
   }
 
   alert("Reference submitted.");
 }
 
-let seconds = 596;
+let totalSeconds = 596;
 
 setInterval(function(){
 
-  if(seconds <= 0) return;
+  if(totalSeconds <= 0) return;
 
-  seconds--;
+  totalSeconds--;
 
-  const m =
-    Math.floor(seconds / 60);
+  const minutes =
+    Math.floor(totalSeconds / 60);
 
-  const s =
-    seconds % 60;
+  const seconds =
+    totalSeconds % 60;
 
-  document.getElementById("min").textContent =
-    String(m).padStart(2,"0");
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2,"0");
 
-  document.getElementById("sec").textContent =
-    String(s).padStart(2,"0");
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2,"0");
 
 },1000);
 
