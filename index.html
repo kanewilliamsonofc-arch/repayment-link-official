@@ -1,12 +1,267 @@
-<div class="notice">
-    1. Please verify all information before submitting.<br>
-    2. Do not submit incorrect transaction information.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff;
+  color:#292929;
+}
+
+.header{
+  height:85px;
+  background:#1688ed;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:700;
+}
+
+.container{
+  max-width:720px;
+  margin:auto;
+  padding:22px 21px 35px;
+}
+
+.close-title{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.timer{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:4px;
+  margin-top:-40px;
+  margin-bottom:35px;
+}
+
+.timer span{
+  background:#1688ed;
+  color:#fff;
+  padding:6px 8px;
+  border-radius:6px;
+  font-size:21px;
+  font-weight:700;
+}
+
+.timer b{font-size:20px}
+
+.info{
+  display:grid;
+  grid-template-columns:115px 1fr 92px;
+  align-items:center;
+  gap:7px;
+  margin:23px 0;
+}
+
+.label{font-size:22px}
+
+.value{
+  text-align:right;
+  font-size:23px;
+  font-weight:700;
+  word-break:break-all;
+}
+
+.copy{
+  margin-left:8px;
+  padding:10px 13px;
+  background:#fff;
+  color:#398bd1;
+  border:2px solid #398bd1;
+  border-radius:7px;
+  font-size:16px;
+}
+
+.help{
+  color:#398bd1;
+  font-size:20px;
+  margin:32px 0;
+}
+
+.methods{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.method{
+  height:100px;
+  border:2px solid #e1e1e1;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  font-weight:700;
+}
+
+.phonepe{
+  color:#673ab7;
+  font-size:29px;
+}
+
+.paytm{
+  color:#0875bd;
+  font-size:35px;
+}
+
+.gpay{
+  color:#555;
+  font-size:29px;
+}
+
+.gpay b{color:#4285f4}
+
+.bhim{
+  color:#555;
+  font-size:30px;
+  font-style:italic;
+}
+
+.ut-title{
+  color:#398bd1;
+  font-size:20px;
+  margin:34px 0 18px;
+}
+
+.ut-row{
+  display:flex;
+  align-items:center;
+  border-bottom:1px solid #ddd;
+  padding-bottom:8px;
+}
+
+.ut-label{
+  width:85px;
+  font-size:21px;
+}
+
+.ut-input{
+  flex:1;
+  border:0;
+  outline:0;
+  font-size:19px;
+  padding:8px;
+}
+
+.submit{
+  width:100%;
+  margin-top:25px;
+  padding:18px;
+  border:0;
+  border-radius:40px;
+  background:#1688ed;
+  color:#fff;
+  font-size:23px;
+  font-weight:700;
+}
+
+.notice-title{
+  color:#d52f36;
+  font-size:21px;
+  font-weight:700;
+  margin-top:35px;
+}
+
+.notice{
+  font-size:18px;
+  line-height:1.55;
+  margin-top:7px;
+}
+
+.footer{
+  text-align:center;
+  color:#777;
+  font-size:16px;
+  line-height:1.55;
+  margin-top:35px;
+}
+
+@media(max-width:500px){
+  .container{padding:21px}
+  .info{
+    grid-template-columns:105px 1fr 88px;
+  }
+  .label{font-size:20px}
+  .value{font-size:21px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Payment</div>
+
+<div class="container">
+
+  <div class="close-title">
+    Order will be closed in:
   </div>
 
-  <div class="logos">
-    <div class="p">PhonePe</div>
-    <div class="t">paytm</div>
-    <div class="u">UPI</div>
+  <div class="timer">
+    <span id="min">09</span>
+    <b>:</b>
+    <span id="sec">56</span>
+  </div>
+
+  <div class="info">
+    <div class="label">Amount</div>
+    <div class="value" id="amount">₹ 2000</div>
+    <button class="copy" onclick="copyValue('amount')">COPY</button>
+  </div>
+
+  <div class="info">
+    <div class="label">VPA / UPI ID</div>
+    <div class="value" id="upi">TEST-UPI-001</div>
+    <button class="copy" onclick="copyValue('upi')">COPY</button>
+  </div>
+
+  <div class="help">
+    ⓘ How to transfer money ↗
+  </div>
+
+  <div class="methods">
+    <div class="method phonepe">PhonePe</div>
+    <div class="method paytm">paytm</div>
+    <div class="method gpay"><b>G</b>&nbsp;Pay</div>
+    <div class="method bhim">BHIM</div>
+  </div>
+
+  <div class="ut-title">
+    ↓ Transaction reference
+  </div>
+
+  <div class="ut-row">
+    <div class="ut-label">Ref.</div>
+    <input
+      class="ut-input"
+      type="text"
+      placeholder="Enter reference number"
+    >
+  </div>
+
+  <button class="submit" onclick="submitReference()">
+    Submit
+  </button>
+
+  <div class="notice-title">Notice:</div>
+
+  <div class="notice">
+    1. Please verify all information before submitting.<br>
+    2. Do not submit incorrect transaction information.
   </div>
 
   <div class="footer">
@@ -17,29 +272,47 @@
 </div>
 
 <script>
-const params=new URLSearchParams(location.search);
+const params = new URLSearchParams(window.location.search);
 
-if(params.get("amount"))
-  document.getElementById("amount").textContent="₹ "+params.get("amount");
+const amount = params.get("amount");
+const upi = params.get("upi");
 
-if(params.get("upi"))
-  document.getElementById("upi").textContent=params.get("upi");
-
-function copyText(id){
-  navigator.clipboard.writeText(
-    document.getElementById(id).textContent
-  );
+if(amount){
+  document.getElementById("amount").textContent = "₹ " + amount;
 }
 
-let time=596;
+if(upi){
+  document.getElementById("upi").textContent = upi;
+}
 
-setInterval(()=>{
-  if(time<=0)return;
-  time--;
-  document.getElementById("min").textContent=
-    String(Math.floor(time/60)).padStart(2,"0");
-  document.getElementById("sec").textContent=
-    String(time%60).padStart(2,"0");
+function copyValue(id){
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text);
+}
+
+function submitReference(){
+  const input = document.querySelector(".ut-input").value.trim();
+
+  if(!input){
+    alert("Please enter the reference number.");
+    return;
+  }
+
+  alert("Reference submitted.");
+}
+
+let totalSeconds = 596;
+
+setInterval(function(){
+  if(totalSeconds <= 0) return;
+
+  totalSeconds--;
+
+  document.getElementById("min").textContent =
+    String(Math.floor(totalSeconds / 60)).padStart(2,"0");
+
+  document.getElementById("sec").textContent =
+    String(totalSeconds % 60).padStart(2,"0");
 },1000);
 </script>
 
