@@ -2,336 +2,144 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Private UI</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  background:#fff;
-  color:#222;
-  font-family:Arial,Helvetica,sans-serif;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;width:100%;background:#fff;color:#222;font-family:Arial,sans-serif}
 
 .header{
-  height:55px;
-  background:#104779;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:23px;
-  font-weight:700;
+  height:55px;background:#104779;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:23px;font-weight:700
 }
 
-.page{
-  width:100%;
-  max-width:680px;
-  margin:auto;
-  padding:12px 20px 15px;
-}
+.page{max-width:680px;margin:auto;padding:12px 20px 15px}
 
 .top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px
 }
 
-.title{
-  font-size:17px;
-  font-weight:700;
-}
+.title{font-size:17px;font-weight:700}
 
-.timer{
-  display:flex;
-  align-items:center;
-  gap:3px;
-  font-size:16px;
-  font-weight:700;
-}
+.timer{display:flex;align-items:center;gap:3px;font-size:16px;font-weight:700}
 
 .timer span{
-  min-width:32px;
-  padding:4px 5px;
-  background:#168fe0;
-  color:#fff;
-  border-radius:5px;
-  text-align:center;
+  min-width:32px;padding:4px 5px;
+  background:#168fe0;color:#fff;border-radius:5px;text-align:center
 }
 
-.timer b{
-  color:#555;
-}
+.timer b{color:#555}
 
 .row{
-  display:grid;
-  grid-template-columns:1fr auto auto;
-  align-items:center;
-  gap:9px;
-  margin-bottom:11px;
+  display:grid;grid-template-columns:1fr auto auto;
+  align-items:center;gap:9px;margin-bottom:11px
 }
 
-.label{
-  font-size:17px;
-}
+.label{font-size:17px}
 
-.value{
-  font-size:18px;
-  font-weight:700;
-  text-align:right;
-}
+.value{font-size:18px;font-weight:700;text-align:right;word-break:break-all}
 
 .copy{
-  border:2px solid #3c91cf;
-  background:#fff;
-  color:#3488c4;
-  border-radius:6px;
-  padding:7px 16px;
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
+  border:2px solid #3c91cf;background:#fff;color:#3488c4;
+  border-radius:6px;padding:7px 16px;font-size:14px;font-weight:600
 }
 
-.copy:active{
-  transform:scale(.97);
-}
+.help{color:#398ccc;font-size:16px;margin:16px 0 11px}
 
-.help{
-  color:#398ccc;
-  font-size:16px;
-  margin:16px 0 11px;
-}
-
-.apps{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:7px;
-}
+.apps{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 
 .app{
-  height:55px;
-  border:1px solid #ddd;
-  border-radius:9px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;
-  font-size:17px;
-  font-weight:700;
+  height:54px;border:1px solid #ddd;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:700
 }
 
-.app:nth-child(1){color:#673ab7}
-.app:nth-child(2){color:#123e76}
-.app:nth-child(3){color:#444}
-.app:nth-child(4){color:#555}
-
-.utr-help{
-  color:#398ccc;
-  font-size:15px;
-  margin:16px 0 8px;
-}
+.utr-help{color:#398ccc;font-size:15px;margin:16px 0 8px}
 
 .utr{
-  display:flex;
-  align-items:center;
-  border-bottom:1px solid #ddd;
-  padding-bottom:7px;
-  margin-bottom:10px;
+  display:flex;align-items:center;
+  border-bottom:1px solid #ddd;padding-bottom:7px;margin-bottom:10px
 }
 
-.utr label{
-  font-size:16px;
-  margin-right:20px;
-}
+.utr label{font-size:16px;margin-right:20px}
 
 .utr input{
-  flex:1;
-  min-width:0;
-  border:0;
-  outline:0;
-  background:transparent;
-  font-size:15px;
+  flex:1;min-width:0;border:0;outline:0;
+  background:transparent;font-size:15px
 }
 
 .submit{
-  width:100%;
-  border:0;
-  border-radius:28px;
-  padding:11px;
-  background:#168fe0;
-  color:#fff;
-  font-size:17px;
-  font-weight:700;
-  cursor:pointer;
+  width:100%;border:0;border-radius:28px;padding:11px;
+  background:#168fe0;color:#fff;font-size:17px;font-weight:700
 }
 
-.notice{
-  margin-top:14px;
-}
+.notice{margin-top:14px}
 
-.notice h3{
-  margin:0 0 5px;
-  color:#d83232;
-  font-size:17px;
-}
+.notice h3{margin:0 0 5px;color:#d83232;font-size:17px}
 
-.notice p{
-  margin:4px 0;
-  font-size:14px;
-  line-height:1.35;
-}
+.notice p{margin:4px 0;font-size:14px;line-height:1.35}
 
-.notice strong{
-  color:#d83232;
-}
+.notice strong{color:#d83232}
 
-.private{
-  text-align:center;
-  color:#888;
-  font-size:10px;
-  margin-top:8px;
-}
-
-
-/* Green copy/status bar */
+.private{text-align:center;color:#888;font-size:10px;margin-top:8px}
 
 .toast{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  padding:11px 8px;
-  background:#08bd58;
-  color:#fff;
-  text-align:center;
-  font-size:16px;
-  font-weight:700;
-  transform:translateY(-100%);
-  transition:.25s ease;
-  z-index:9999;
+  position:fixed;top:0;left:0;width:100%;padding:11px 8px;
+  background:#08bd58;color:#fff;text-align:center;
+  font-size:16px;font-weight:700;
+  transform:translateY(-100%);transition:.25s;z-index:9999
 }
 
-.toast.show{
-  transform:translateY(0);
-}
-
-
-/* Startup popup */
+.toast.show{transform:translateY(0)}
 
 dialog{
-  width:calc(100% - 38px);
-  max-width:600px;
-  padding:0;
-  border:0;
-  border-radius:25px;
-  overflow:hidden;
-  box-shadow:0 15px 50px rgba(0,0,0,.3);
+  width:calc(100% - 38px);max-width:600px;
+  padding:0;border:0;border-radius:25px;overflow:hidden
 }
 
-dialog::backdrop{
-  background:rgba(0,0,0,.62);
-}
+dialog::backdrop{background:rgba(0,0,0,.62)}
 
-.modal{
-  padding:23px 18px 18px;
-}
+.modal{padding:23px 18px 18px}
 
 .modal-title{
-  text-align:center;
-  font-size:22px;
-  font-weight:700;
-  margin-bottom:18px;
+  text-align:center;font-size:22px;
+  font-weight:700;margin-bottom:18px
 }
 
 .rules{
-  padding:16px 13px;
-  background:#edf4ff;
+  padding:16px 13px;background:#edf4ff;
   border-left:6px solid #198ee0;
-  border-radius:0 15px 15px 0;
+  border-radius:0 15px 15px 0
 }
 
 .rule{
-  display:flex;
-  gap:10px;
-  font-size:15px;
-  line-height:1.4;
-  margin-bottom:14px;
+  display:flex;gap:10px;font-size:15px;
+  line-height:1.4;margin-bottom:14px
 }
 
-.rule:last-child{
-  margin-bottom:0;
-}
+.rule:last-child{margin-bottom:0}
 
 .num{
-  flex:none;
-  width:27px;
-  height:27px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#218ee0;
-  color:#fff;
-  border-radius:50%;
-  font-weight:700;
+  flex:none;width:27px;height:27px;
+  display:flex;align-items:center;justify-content:center;
+  background:#218ee0;color:#fff;border-radius:50%;font-weight:700
 }
 
-.red{
-  color:#e64242;
-  font-weight:700;
-}
+.red{color:#e64242;font-weight:700}
 
 .understand{
-  width:100%;
-  margin-top:18px;
-  padding:12px;
-  border:0;
-  border-radius:28px;
-  background:#168fe0;
-  color:#fff;
-  font-size:18px;
-  font-weight:700;
-  cursor:pointer;
+  width:100%;margin-top:18px;padding:12px;
+  border:0;border-radius:28px;
+  background:#168fe0;color:#fff;font-size:18px;font-weight:700
 }
 
-
-/* Mobile */
-
 @media(max-width:520px){
-
-  .header{
-    height:55px;
-    font-size:23px;
-  }
-
-  .page{
-    padding:12px 20px 15px;
-  }
-
-  .row{
-    grid-template-columns:1fr auto;
-  }
-
-  .value{
-    grid-column:1;
-    text-align:left;
-  }
-
-  .copy{
-    grid-column:2;
-    grid-row:1 / span 2;
-  }
-
-  .app{
-    height:54px;
-  }
+  .row{grid-template-columns:1fr auto}
+  .value{grid-column:1;text-align:left}
+  .copy{grid-column:2;grid-row:1/span 2}
 }
 </style>
 </head>
@@ -340,275 +148,165 @@ dialog::backdrop{
 
 <div id="toast" class="toast"></div>
 
-
-<div class="header">
-  Payment
-</div>
-
+<div class="header">Payment</div>
 
 <div class="page">
 
-  <div class="top">
-
-    <div class="title">
-      Order will be closed in:
-    </div>
-
-    <div class="timer">
-      <span id="min">09</span>
-      <b>:</b>
-      <span id="sec">59</span>
-    </div>
-
+<div class="top">
+  <div class="title">Order will be closed in:</div>
+  <div class="timer">
+    <span id="min">09</span>
+    <b>:</b>
+    <span id="sec">59</span>
   </div>
+</div>
 
+<div class="row">
+  <div class="label">Amount</div>
+  <div class="value" id="amountValue">₹ 20400</div>
+  <button class="copy" id="amountCopy">COPY</button>
+</div>
 
-  <!-- Amount -->
+<div class="row">
+  <div class="label">VPA/UPI ID</div>
+  <div class="value" id="vpaValue">test-user@demo</div>
+  <button class="copy" id="vpaCopy">COPY</button>
+</div>
 
-  <div class="row">
+<div class="help">? How to transfer money ↗</div>
 
-    <div class="label">
-      Amount
-    </div>
+<div class="apps">
+  <div class="app">PhonePe</div>
+  <div class="app">Paytm</div>
+  <div class="app">G Pay</div>
+  <div class="app">BHIM</div>
+</div>
 
-    <div class="value">
-      ₹ 20400
-    </div>
+<div class="utr-help">
+  ↓ Enter the test reference number
+</div>
 
-    <button
-      class="copy"
-      onclick="copyValue('20400','Amount copied')">
-      COPY
-    </button>
+<div class="utr">
+  <label>Reference</label>
+  <input id="reference" maxlength="12"
+         inputmode="numeric"
+         placeholder="Input reference number">
+</div>
 
-  </div>
+<button class="submit" onclick="submitReference()">
+  Submit Reference
+</button>
 
+<div class="notice">
+  <h3>Tips:</h3>
 
-  <!-- VPA -->
+  <p>!!! One test UPI can only be used <strong>ONCE.</strong></p>
 
-  <div class="row">
+  <p>!!! <strong>DO NOT CHANGE</strong> the test <strong>AMOUNT &amp; UPI.</strong></p>
 
-    <div class="label">
-      VPA/UPI ID
-    </div>
+  <p>!!! <strong>DO NOT</strong> repeat the same test interaction.</p>
 
-    <div class="value">
-      test****@demo
-    </div>
+  <p>For private/test use only.</p>
 
-    <button
-      class="copy"
-      onclick="copyValue('test-user@demo','UPI copied')">
-      COPY
-    </button>
+  <p>After the test simulation, enter the reference number.</p>
+</div>
 
-  </div>
-
-
-  <div class="help">
-    ? How to transfer money ↗
-  </div>
-
-
-  <!-- Payment method names -->
-
-  <div class="apps">
-
-    <div class="app">
-      PhonePe
-    </div>
-
-    <div class="app">
-      Paytm
-    </div>
-
-    <div class="app">
-      G Pay
-    </div>
-
-    <div class="app">
-      BHIM
-    </div>
-
-  </div>
-
-
-  <div class="utr-help">
-    ↓ Fill the UTR numbers after you done payment
-  </div>
-
-
-  <div class="utr">
-
-    <label>
-      UTR
-    </label>
-
-    <input
-      id="utr"
-      type="text"
-      maxlength="12"
-      inputmode="numeric"
-      placeholder="Input UTR number">
-
-  </div>
-
-
-  <button
-    class="submit"
-    onclick="submitReference()">
-    Submit UTR
-  </button>
-
-
-  <!-- Notice -->
-
-  <div class="notice">
-
-    <h3>
-      Tips:
-    </h3>
-
-    <p>
-      !!! One UPI can only transfer money
-      <strong>ONCE.</strong>
-    </p>
-
-    <p>
-      !!! <strong>DO NOT CHANGE</strong>
-      the payment <strong>AMOUNT &amp; UPI.</strong>
-    </p>
-
-    <p>
-      !!! <strong>DO NOT</strong> transfer money
-      in the UPI friend <strong>CHAT window</strong> again.
-    </p>
-
-    <p>
-      Otherwise, the order <strong>CANNOT</strong> be completed.
-    </p>
-
-    <p>
-      After payment is completed, please fill in the UTR.
-    </p>
-
-  </div>
-
-
-  <div class="private">
-    Private UI
-  </div>
+<div class="private">Private UI</div>
 
 </div>
 
-
-<!-- Startup Notice -->
-
 <dialog id="noticeModal">
 
-  <div class="modal">
+<div class="modal">
 
-    <div class="modal-title">
-      Important Notice
-    </div>
+<div class="modal-title">Important Notice</div>
 
-    <div class="rules">
+<div class="rules">
 
-      <div class="rule">
+<div class="rule">
+<div class="num">1</div>
+<div>
+<span class="red">One test UPI ID</span>
+can only be used for
+<span class="red">one test payment.</span>
+</div>
+</div>
 
-        <div class="num">
-          1
-        </div>
+<div class="rule">
+<div class="num">2</div>
+<div>
+<span class="red">Do not change</span>
+the test <span class="red">amount.</span>
+</div>
+</div>
 
-        <div>
-          <span class="red">
-            One test UPI ID
-          </span>
-          can only be used for
-          <span class="red">
-            one test payment.
-          </span>
-        </div>
+<div class="rule">
+<div class="num">3</div>
+<div>
+Complete the test interaction
+<span class="red">before</span> the timer expires.
+</div>
+</div>
 
-      </div>
+</div>
 
+<button class="understand" onclick="closeModal()">
+I Understand
+</button>
 
-      <div class="rule">
-
-        <div class="num">
-          2
-        </div>
-
-        <div>
-          <span class="red">
-            Do not change
-          </span>
-          the test
-          <span class="red">
-            amount.
-          </span>
-        </div>
-
-      </div>
-
-
-      <div class="rule">
-
-        <div class="num">
-          3
-        </div>
-
-        <div>
-          Complete the test interaction
-          <span class="red">
-            before
-          </span>
-          the timer expires.
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="understand"
-      onclick="closeModal()">
-      I Understand
-    </button>
-
-  </div>
+</div>
 
 </dialog>
 
-
 <script>
 
-/* Startup popup */
+/* Read URL parameters */
+
+const params = new URLSearchParams(window.location.search);
+
+const amount =
+  params.get("amount") || "20400";
+
+const vpa =
+  params.get("vpa") || "test-user@demo";
+
+
+/* Display URL values */
+
+document.getElementById("amountValue").textContent =
+  "₹ " + amount;
+
+document.getElementById("vpaValue").textContent =
+  vpa;
+
+
+/* Copy buttons */
+
+document.getElementById("amountCopy").onclick =
+  function(){
+    copyValue(amount,"Amount copied");
+  };
+
+document.getElementById("vpaCopy").onclick =
+  function(){
+    copyValue(vpa,"UPI copied");
+  };
+
+
+/* Popup */
 
 window.addEventListener("load",function(){
 
-  const modal =
-    document.getElementById("noticeModal");
+  const modal=document.getElementById("noticeModal");
 
-  if(
-    modal &&
-    typeof modal.showModal === "function"
-  ){
+  if(modal && typeof modal.showModal==="function"){
     modal.showModal();
   }
 
 });
 
-
-/* Close popup */
-
 function closeModal(){
-
-  document
-    .getElementById("noticeModal")
-    .close();
-
+  document.getElementById("noticeModal").close();
 }
 
 
@@ -620,79 +318,48 @@ function copyValue(value,message){
 
     navigator.clipboard.writeText(value)
       .then(function(){
-
-        showToast(
-          message + " — " + value
-        );
-
+        showToast(message+" — "+value);
       })
       .catch(function(){
-
         fallbackCopy(value,message);
-
       });
 
   }else{
-
     fallbackCopy(value,message);
-
   }
-
 }
-
-
-/* Backup copy */
 
 function fallbackCopy(value,message){
 
-  const textarea =
-    document.createElement("textarea");
+  const box=document.createElement("textarea");
 
-  textarea.value=value;
+  box.value=value;
+  box.style.position="fixed";
+  box.style.opacity="0";
 
-  textarea.style.position="fixed";
-  textarea.style.opacity="0";
-
-  document.body.appendChild(textarea);
-
-  textarea.select();
+  document.body.appendChild(box);
+  box.select();
 
   try{
-
     document.execCommand("copy");
-
-    showToast(
-      message + " — " + value
-    );
-
-  }catch(error){
-
+    showToast(message+" — "+value);
+  }catch(e){
     showToast("Copy unavailable");
-
   }
 
-  document.body.removeChild(textarea);
-
+  document.body.removeChild(box);
 }
-
-
-/* Green bar */
 
 function showToast(message){
 
-  const toast =
-    document.getElementById("toast");
+  const toast=document.getElementById("toast");
 
   toast.textContent=message;
-
   toast.classList.add("show");
 
   setTimeout(function(){
-
     toast.classList.remove("show");
-
   },2000);
-
 }
 
 
@@ -702,50 +369,39 @@ let totalSeconds=599;
 
 function updateCountdown(){
 
-  const minutes =
-    Math.floor(totalSeconds / 60);
-
-  const seconds =
-    totalSeconds % 60;
+  const m=Math.floor(totalSeconds/60);
+  const s=totalSeconds%60;
 
   document.getElementById("min").textContent =
-    String(minutes).padStart(2,"0");
+    String(m).padStart(2,"0");
 
   document.getElementById("sec").textContent =
-    String(seconds).padStart(2,"0");
+    String(s).padStart(2,"0");
 
   if(totalSeconds>0){
     totalSeconds--;
   }
-
 }
 
 updateCountdown();
-
 setInterval(updateCountdown,1000);
 
 
-/* Reference status */
+/* Test reference */
 
 function submitReference(){
 
-  const value =
-    document.getElementById("utr").value.trim();
+  const value=
+    document.getElementById("reference").value.trim();
 
   if(!/^\d{12}$/.test(value)){
-
-    showToast(
-      "Enter a 12-digit reference"
-    );
-
+    showToast("Enter a 12-digit test reference");
     return;
-
   }
 
   showToast(
     "Reference received — verification pending"
   );
-
 }
 
 </script>
