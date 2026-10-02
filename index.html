@@ -108,28 +108,11 @@ body{
   font-weight:700;
 }
 
-.phonepe{
-  color:#673ab7;
-  font-size:29px;
-}
-
-.paytm{
-  color:#0875bd;
-  font-size:35px;
-}
-
-.gpay{
-  color:#555;
-  font-size:29px;
-}
-
+.phonepe{color:#673ab7;font-size:29px}
+.paytm{color:#0875bd;font-size:35px}
+.gpay{color:#555;font-size:29px}
 .gpay b{color:#4285f4}
-
-.bhim{
-  color:#555;
-  font-size:30px;
-  font-style:italic;
-}
+.bhim{color:#555;font-size:30px;font-style:italic}
 
 .ut-title{
   color:#398bd1;
@@ -169,6 +152,17 @@ body{
   font-weight:700;
 }
 
+.status{
+  display:none;
+  margin-top:18px;
+  padding:15px;
+  border-radius:10px;
+  background:#eef8ee;
+  color:#28752d;
+  font-size:17px;
+  text-align:center;
+}
+
 .notice-title{
   color:#d52f36;
   font-size:21px;
@@ -192,9 +186,7 @@ body{
 
 @media(max-width:500px){
   .container{padding:21px}
-  .info{
-    grid-template-columns:105px 1fr 88px;
-  }
+  .info{grid-template-columns:105px 1fr 88px}
   .label{font-size:20px}
   .value{font-size:21px}
 }
@@ -207,112 +199,131 @@ body{
 
 <div class="container">
 
-  <div class="close-title">
-    Order will be closed in:
-  </div>
+<div class="close-title">Order will be closed in:</div>
 
-  <div class="timer">
-    <span id="min">09</span>
-    <b>:</b>
-    <span id="sec">56</span>
-  </div>
+<div class="timer">
+<span id="min">09</span>
+<b>:</b>
+<span id="sec">56</span>
+</div>
 
-  <div class="info">
-    <div class="label">Amount</div>
-    <div class="value" id="amount">₹ 2000</div>
-    <button class="copy" onclick="copyValue('amount')">COPY</button>
-  </div>
+<div class="info">
+<div class="label">Amount</div>
+<div class="value" id="amount">₹ 2000</div>
+<button class="copy" onclick="copyValue('amount')">COPY</button>
+</div>
 
-  <div class="info">
-    <div class="label">VPA / UPI ID</div>
-    <div class="value" id="upi">TEST-UPI-001</div>
-    <button class="copy" onclick="copyValue('upi')">COPY</button>
-  </div>
+<div class="info">
+<div class="label">VPA / UPI ID</div>
+<div class="value" id="upi">TEST-UPI-001</div>
+<button class="copy" onclick="copyValue('upi')">COPY</button>
+</div>
 
-  <div class="help">
-    ⓘ How to transfer money ↗
-  </div>
+<div class="help">ⓘ How to transfer money ↗</div>
 
-  <div class="methods">
-    <div class="method phonepe">PhonePe</div>
-    <div class="method paytm">paytm</div>
-    <div class="method gpay"><b>G</b>&nbsp;Pay</div>
-    <div class="method bhim">BHIM</div>
-  </div>
+<div class="methods">
+<div class="method phonepe">PhonePe</div>
+<div class="method paytm">paytm</div>
+<div class="method gpay"><b>G</b>&nbsp;Pay</div>
+<div class="method bhim">BHIM</div>
+</div>
 
-  <div class="ut-title">
-    ↓ Transaction reference
-  </div>
+<div class="ut-title">
+↓ Enter 12-digit transaction reference
+</div>
 
-  <div class="ut-row">
-    <div class="ut-label">Ref.</div>
-    <input
-      class="ut-input"
-      type="text"
-      placeholder="Enter reference number"
-    >
-  </div>
+<div class="ut-row">
+<div class="ut-label">UTR</div>
 
-  <button class="submit" onclick="submitReference()">
-    Submit
-  </button>
+<input
+class="ut-input"
+id="utr"
+type="text"
+inputmode="numeric"
+maxlength="12"
+placeholder="12-digit number"
+>
+</div>
 
-  <div class="notice-title">Notice:</div>
+<button class="submit" onclick="submitReference()">
+Submit
+</button>
 
-  <div class="notice">
-    1. Please verify all information before submitting.<br>
-    2. Do not submit incorrect transaction information.
-  </div>
+<div class="status" id="status">
+Reference received — verification pending.
+</div>
 
-  <div class="footer">
-    Payment Portal<br>
-    Secure payment information
-  </div>
+<div class="notice-title">Notice:</div>
+
+<div class="notice">
+1. Please verify all information before submitting.<br>
+2. Incorrect reference information may require verification.
+</div>
+
+<div class="footer">
+Payment Portal<br>
+Secure payment information
+</div>
 
 </div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
+const params=new URLSearchParams(window.location.search);
 
-const amount = params.get("amount");
-const upi = params.get("upi");
+const amount=params.get("amount");
+const upi=params.get("upi");
 
 if(amount){
-  document.getElementById("amount").textContent = "₹ " + amount;
+document.getElementById("amount").textContent="₹ "+amount;
 }
 
 if(upi){
-  document.getElementById("upi").textContent = upi;
+document.getElementById("upi").textContent=upi;
 }
 
 function copyValue(id){
-  const text = document.getElementById(id).textContent;
-  navigator.clipboard.writeText(text);
+const text=document.getElementById(id).textContent;
+
+if(navigator.clipboard){
+navigator.clipboard.writeText(text);
+}else{
+const area=document.createElement("textarea");
+area.value=text;
+document.body.appendChild(area);
+area.select();
+document.execCommand("copy");
+area.remove();
+}
+
+alert("Copied");
 }
 
 function submitReference(){
-  const input = document.querySelector(".ut-input").value.trim();
 
-  if(!input){
-    alert("Please enter the reference number.");
-    return;
-  }
+const utr=document.getElementById("utr").value.trim();
 
-  alert("Reference submitted.");
+if(!/^\d{12}$/.test(utr)){
+alert("Please enter exactly 12 digits.");
+return;
 }
 
-let totalSeconds = 596;
+document.getElementById("status").style.display="block";
+}
+
+let totalSeconds=596;
 
 setInterval(function(){
-  if(totalSeconds <= 0) return;
 
-  totalSeconds--;
+if(totalSeconds<=0)return;
 
-  document.getElementById("min").textContent =
-    String(Math.floor(totalSeconds / 60)).padStart(2,"0");
+totalSeconds--;
 
-  document.getElementById("sec").textContent =
-    String(totalSeconds % 60).padStart(2,"0");
+document.getElementById("min").textContent=
+String(Math.floor(totalSeconds/60)).padStart(2,"0");
+
+document.getElementById("sec").textContent=
+String(totalSeconds%60).padStart(2,"0");
+
 },1000);
 </script>
 
