@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Payment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Demo</title>
 
 <style>
 *{
@@ -16,7 +16,7 @@ html,body{
   padding:0;
   width:100%;
   background:#fff;
-  color:#222;
+  color:#273746;
   font-family:Arial,Helvetica,sans-serif;
 }
 
@@ -33,16 +33,16 @@ html,body{
 
 .page{
   width:100%;
-  max-width:680px;
+  max-width:691px;
   margin:auto;
-  padding:12px 20px 15px;
+  padding:12px 11px 14px;
 }
 
 .top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:14px;
+  margin-bottom:18px;
 }
 
 .title{
@@ -73,31 +73,33 @@ html,body{
 
 .row{
   display:grid;
-  grid-template-columns:1fr auto auto;
+  grid-template-columns:minmax(0,1fr) auto auto;
   align-items:center;
-  gap:9px;
-  margin-bottom:11px;
+  column-gap:8px;
+  margin-bottom:18px;
 }
 
 .label{
   font-size:17px;
+  text-align:left;
 }
 
 .value{
   font-size:18px;
   font-weight:700;
   text-align:right;
-  word-break:break-all;
+  white-space:nowrap;
 }
 
 .copy{
+  min-width:108px;
+  height:52px;
   border:2px solid #4A90D9;
   background:#fff;
   color:#4A90D9;
   border-radius:6px;
-  padding:7px 16px;
-  font-size:14px;
-  font-weight:600;
+  padding:0 16px;
+  font-size:16px;
   cursor:pointer;
 }
 
@@ -108,17 +110,17 @@ html,body{
 .help{
   color:#398ccc;
   font-size:16px;
-  margin:16px 0 11px;
+  margin:20px 0 12px;
 }
 
 .apps{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:7px;
+  gap:8px;
 }
 
 .app{
-  height:55px;
+  height:54px;
   border:1px solid #ddd;
   border-radius:9px;
   display:flex;
@@ -132,20 +134,20 @@ html,body{
 .utr-help{
   color:#398ccc;
   font-size:15px;
-  margin:16px 0 8px;
+  margin:18px 0 8px;
 }
 
 .utr{
   display:flex;
   align-items:center;
   border-bottom:1px solid #ddd;
-  padding-bottom:7px;
-  margin-bottom:10px;
+  padding:4px 0 8px;
 }
 
 .utr label{
+  width:115px;
+  flex:none;
   font-size:16px;
-  margin-right:20px;
 }
 
 .utr input{
@@ -155,13 +157,26 @@ html,body{
   outline:0;
   background:transparent;
   font-size:15px;
+  color:#333;
+}
+
+.utr input::placeholder{
+  color:#c8c8c8;
+}
+
+.utr-message{
+  display:none;
+  margin:7px 0 7px 115px;
+  color:#d83232;
+  font-size:14px;
 }
 
 .submit{
   width:100%;
   border:0;
   border-radius:28px;
-  padding:11px;
+  margin-top:10px;
+  padding:12px;
   background:#2196F3;
   color:#fff;
   font-size:17px;
@@ -169,120 +184,190 @@ html,body{
   cursor:pointer;
 }
 
+.submit:disabled{
+  opacity:.75;
+}
+
 .notice{
-  margin-top:14px;
+  margin-top:17px;
 }
 
 .notice-title{
-  font-size:17px;
   color:#d83232;
+  font-size:17px;
   font-weight:700;
-  margin:0 0 5px;
 }
 
 .notice p{
-  margin:4px 0;
+  margin:3px 0;
   font-size:14px;
-  line-height:1.35;
+  line-height:1.4;
 }
 
-.notice .red{
+.red{
   color:#d83232;
-  font-weight:700;
 }
 
-.notice .normal{
-  color:#222;
-}
+
+/* COPY BAR */
 
 .toast{
   position:fixed;
   top:0;
   left:0;
   width:100%;
-  padding:11px 8px;
+  padding:14px 10px;
   background:#08bd58;
   color:#fff;
   text-align:center;
-  font-size:16px;
-  font-weight:700;
+  font-size:17px;
+  font-weight:600;
+  z-index:9999;
   transform:translateY(-100%);
   transition:.25s ease;
-  z-index:9999;
 }
 
 .toast.show{
   transform:translateY(0);
 }
 
-dialog{
-  width:calc(100% - 38px);
-  max-width:600px;
-  padding:0;
-  border:0;
-  border-radius:25px;
-  overflow:hidden;
-  box-shadow:0 15px 50px rgba(0,0,0,.3);
+
+/* PROCESSING MODAL */
+
+.processing{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9000;
+  background:rgba(0,0,0,.55);
+  align-items:center;
+  justify-content:center;
+  padding:25px;
 }
 
-dialog::backdrop{
-  background:rgba(0,0,0,.62);
-}
-
-.modal{
-  padding:23px 18px 18px;
-}
-
-.modal-title{
+.processing-box{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  border-radius:18px;
+  padding:32px 22px;
   text-align:center;
-  font-size:22px;
+  box-shadow:0 15px 45px rgba(0,0,0,.3);
+}
+
+.processing-title{
+  font-size:24px;
   font-weight:700;
-  margin-bottom:18px;
+  margin-bottom:12px;
 }
 
-.rules{
-  padding:16px 13px;
-  background:#edf4ff;
-  border-left:6px solid #2196F3;
-  border-radius:0 15px 15px 0;
-}
-
-.rule{
-  display:flex;
-  gap:10px;
-  font-size:15px;
+.processing-text{
+  color:#398ccc;
+  font-size:17px;
   line-height:1.4;
-  margin-bottom:14px;
 }
 
-.rule:last-child{
+.loader{
+  width:34px;
+  height:34px;
+  margin:20px auto 0;
+  border:4px solid #dceeff;
+  border-top:4px solid #2196F3;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* IMPORTANT NOTICE */
+
+.important-notice{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  background:rgba(0,0,0,.58);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.notice-modal{
+  width:100%;
+  max-width:560px;
+  background:#fff;
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.35);
+}
+
+.important-title{
+  padding:25px 18px 18px;
+  text-align:center;
+  font-size:25px;
+  font-weight:700;
+  color:#333;
+}
+
+.notice-icon{
+  color:#2196F3;
+  font-size:31px;
+  vertical-align:-3px;
+  margin-right:7px;
+}
+
+.notice-box{
+  margin:0 18px 28px;
+  background:#edf6ff;
+  border-left:6px solid #2196F3;
+  border-radius:12px;
+  padding:20px 14px;
+}
+
+.notice-row{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  font-size:18px;
+  line-height:1.28;
+  margin-bottom:20px;
+  color:#273746;
+}
+
+.notice-row:last-child{
   margin-bottom:0;
 }
 
-.num{
+.notice-number{
   flex:none;
   width:27px;
   height:27px;
+  border-radius:50%;
+  background:#2196F3;
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#2196F3;
-  color:#fff;
-  border-radius:50%;
-  font-weight:700;
+  font-size:14px;
+  margin-top:2px;
 }
 
-.red{
-  color:#e64242;
-  font-weight:700;
+.notice-row b{
+  color:#ef5350;
 }
 
 .understand{
-  width:100%;
-  margin-top:18px;
-  padding:12px;
+  width:calc(100% - 36px);
+  margin:0 18px 25px;
   border:0;
-  border-radius:28px;
+  border-radius:30px;
+  padding:15px;
   background:#2196F3;
   color:#fff;
   font-size:18px;
@@ -290,51 +375,188 @@ dialog::backdrop{
   cursor:pointer;
 }
 
+.understand:active{
+  transform:scale(.98);
+}
+
+
 @media(max-width:520px){
 
-  .row{
-    grid-template-columns:1fr auto;
+  .page{
+    padding-left:11px;
+    padding-right:11px;
   }
 
-  .value{
-    grid-column:1;
-    text-align:left;
+  .row{
+    grid-template-columns:minmax(0,1fr) auto auto;
   }
 
   .copy{
-    grid-column:2;
-    grid-row:1 / span 2;
+    min-width:108px;
   }
 
   .app{
     height:54px;
   }
+
+  .notice-modal{
+    max-width:100%;
+  }
+
+  .important-title{
+    font-size:23px;
+    padding-top:23px;
+  }
+
+  .notice-row{
+    font-size:17px;
+  }
+
+  .notice-box{
+    margin-left:15px;
+    margin-right:15px;
+  }
+
+  .understand{
+    width:calc(100% - 30px);
+    margin-left:15px;
+    margin-right:15px;
+  }
 }
 </style>
 </head>
 
+
 <body>
 
+
+<!-- COPY TOAST -->
+
 <div id="toast" class="toast"></div>
+
+
+<!-- PROCESSING -->
+
+<div id="processing" class="processing">
+
+  <div class="processing-box">
+
+    <div class="processing-title">
+      Please Wait
+    </div>
+
+    <div id="processingText" class="processing-text">
+      Processing submitted test UTR...
+    </div>
+
+    <div class="loader"></div>
+
+  </div>
+
+</div>
+
+
+<!-- IMPORTANT NOTICE -->
+
+<div id="importantNotice" class="important-notice">
+
+  <div class="notice-modal">
+
+    <div class="important-title">
+      <span class="notice-icon">ⓘ</span>
+      Important Notice
+    </div>
+
+
+    <div class="notice-box">
+
+      <div class="notice-row">
+
+        <span class="notice-number">1</span>
+
+        <div>
+          <b>One test UPI ID</b>
+          can only be used for
+          <b>one test payment.</b>
+        </div>
+
+      </div>
+
+
+      <div class="notice-row">
+
+        <span class="notice-number">2</span>
+
+        <div>
+          Do <b>not change</b> the test
+          <b>amount</b> during the demo.
+        </div>
+
+      </div>
+
+
+      <div class="notice-row">
+
+        <span class="notice-number">3</span>
+
+        <div>
+          Complete the test interaction
+          <b>before the demo expires.</b>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="understand"
+      type="button"
+      onclick="closeNotice()"
+    >
+      I Understand
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<!-- HEADER -->
 
 <div class="header">
   Payment
 </div>
 
+
+
 <div class="page">
 
+
+  <!-- TIMER -->
+
   <div class="top">
+
     <div class="title">
       Order will be closed in:
     </div>
 
     <div class="timer">
+
       <span id="min">09</span>
+
       <b>:</b>
+
       <span id="sec">59</span>
+
     </div>
+
   </div>
 
+
+
+  <!-- AMOUNT -->
 
   <div class="row">
 
@@ -342,16 +564,23 @@ dialog::backdrop{
       Amount
     </div>
 
-    <div class="value" id="amountValue">
+    <div id="amountValue" class="value">
       ₹ 20400
     </div>
 
-    <button class="copy" id="amountCopy">
+    <button
+      type="button"
+      class="copy"
+      onclick="copyAmount()"
+    >
       COPY
     </button>
 
   </div>
 
+
+
+  <!-- VPA -->
 
   <div class="row">
 
@@ -359,16 +588,23 @@ dialog::backdrop{
       VPA/UPI ID
     </div>
 
-    <div class="value" id="vpaValue">
+    <div id="vpaValue" class="value">
       test***@demo
     </div>
 
-    <button class="copy" id="vpaCopy">
+    <button
+      type="button"
+      class="copy"
+      onclick="copyVPA()"
+    >
       COPY
     </button>
 
   </div>
 
+
+
+  <!-- PAYMENT APPS -->
 
   <div class="help">
     ? How to transfer money ↗
@@ -377,40 +613,71 @@ dialog::backdrop{
 
   <div class="apps">
 
-    <div class="app">PhonePe</div>
-    <div class="app">Paytm</div>
-    <div class="app">G Pay</div>
-    <div class="app">BHIM</div>
+    <div class="app">
+      PhonePe
+    </div>
+
+    <div class="app">
+      Paytm
+    </div>
+
+    <div class="app">
+      G Pay
+    </div>
+
+    <div class="app">
+      BHIM
+    </div>
 
   </div>
 
 
+
+  <!-- UTR -->
+
   <div class="utr-help">
-    ↓ Enter the test reference number
+    ↓ Fill the UTR numbers after you done payment
   </div>
 
 
   <div class="utr">
 
     <label>
-      Reference
+      UTR
     </label>
 
     <input
-      id="reference"
+      id="utr"
       type="text"
       maxlength="12"
       inputmode="numeric"
-      placeholder="Input reference number"
+      autocomplete="off"
+      placeholder="Input UTR number"
+      onfocus="showUTRMessage()"
+      oninput="digitsOnly()"
     >
 
   </div>
 
 
-  <button class="submit" onclick="submitReference()">
-    Submit Reference
+  <div id="utrMessage" class="utr-message">
+    input 12 digits
+  </div>
+
+
+
+  <button
+    id="submitBtn"
+    class="submit"
+    type="button"
+    onclick="submitUTR()"
+  >
+    Submit UTR
   </button>
 
+
+
+  <!-- NORMAL NOTICE -->
 
   <div class="notice">
 
@@ -418,80 +685,29 @@ dialog::backdrop{
       Notice:
     </div>
 
-    <p class="red">
-      !!! One UPI can only transfer money ONCE.
+    <p>
+      1.
+      <span class="red">One test UPI ID</span>
+      can only be used for
+      <span class="red">one test payment.</span>
     </p>
 
-    <p class="red">
-      !!! DO NOT CHANGE the payment AMOUNT &amp; UPI.
-    </p>
-
-    <p class="red">
-      !!! DO NOT transfer money in the UPI friend CHAT window again.
-    </p>
-
-    <p class="normal">
-      Otherwise, the order <strong>CANNOT</strong> be completed.
-    </p>
-
-    <p class="normal">
-      After payment is completed, please
-      <strong>fill in the UTR.</strong>
+    <p>
+      2. Don't change the
+      <span class="red">test payment amount.</span>
+      Otherwise, the demo cannot continue.
     </p>
 
   </div>
+
 
 </div>
 
 
-<dialog id="noticeModal">
-
-  <div class="modal">
-
-    <div class="modal-title">
-      Important Notice
-    </div>
-
-    <div class="rules">
-
-      <div class="rule">
-        <div class="num">1</div>
-        <div>
-          <span class="red">One test UPI ID</span>
-          can only be used for
-          <span class="red">one test payment.</span>
-        </div>
-      </div>
-
-      <div class="rule">
-        <div class="num">2</div>
-        <div>
-          <span class="red">Do not change</span>
-          the test <span class="red">amount.</span>
-        </div>
-      </div>
-
-      <div class="rule">
-        <div class="num">3</div>
-        <div>
-          Complete the test interaction
-          <span class="red">before</span>
-          the timer expires.
-        </div>
-      </div>
-
-    </div>
-
-    <button class="understand" onclick="closeModal()">
-      I Understand
-    </button>
-
-  </div>
-
-</dialog>
-
 
 <script>
+
+/* URL PARAMETERS */
 
 const params =
   new URLSearchParams(window.location.search);
@@ -507,22 +723,35 @@ document.getElementById("amountValue").textContent =
   "₹ " + amount;
 
 
+
+/* MASK TEST VPA */
+
 function maskVPA(value){
 
-  const parts = value.split("@");
+  const parts =
+    value.split("@");
 
   if(parts.length !== 2){
     return "***";
   }
 
-  const name = parts[0];
-  const domain = parts[1];
+  const name =
+    parts[0];
+
+  const domain =
+    parts[1];
 
   if(name.length <= 3){
-    return name + "***@" + domain;
+
+    return name +
+           "***@" +
+           domain;
+
   }
 
-  return name.substring(0,3) + "***@" + domain;
+  return name.substring(0,3) +
+         "***@" +
+         domain;
 }
 
 
@@ -530,61 +759,81 @@ document.getElementById("vpaValue").textContent =
   maskVPA(vpa);
 
 
-document.getElementById("amountCopy").onclick =
-  function(){
-    copyValue(amount,"Amount copied");
-  };
 
+/* CLOSE IMPORTANT NOTICE */
 
-document.getElementById("vpaCopy").onclick =
-  function(){
-    copyValue(vpa,"UPI copied");
-  };
+function closeNotice(){
 
+  const notice =
+    document.getElementById("importantNotice");
 
-function copyValue(value,message){
-
-  if(navigator.clipboard){
-
-    navigator.clipboard
-      .writeText(value)
-      .then(function(){
-        showToast(message+" — "+value);
-      })
-      .catch(function(){
-        fallbackCopy(value,message);
-      });
-
-  }else{
-
-    fallbackCopy(value,message);
-
-  }
+  notice.style.display = "none";
 }
 
 
-function fallbackCopy(value,message){
+
+/* TOAST */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+    setTimeout(function(){
+
+      toast.classList.remove("show");
+
+    },1800);
+}
+
+
+
+/* COPY FALLBACK */
+
+function fallbackCopy(value){
 
   const textarea =
     document.createElement("textarea");
 
-  textarea.value = value;
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
+  textarea.value =
+    value;
+
+  textarea.style.position =
+    "fixed";
+
+  textarea.style.left =
+    "-9999px";
+
+  textarea.style.top =
+    "0";
 
   document.body.appendChild(textarea);
 
+  textarea.focus();
   textarea.select();
+  textarea.setSelectionRange(0,99999);
 
   try{
 
     document.execCommand("copy");
 
-    showToast(message+" — "+value);
+    showToast(
+      "copy:" + value
+    );
 
   }catch(error){
 
-    showToast("Copy unavailable");
+    showToast(
+      "Copy unavailable"
+    );
 
   }
 
@@ -592,46 +841,151 @@ function fallbackCopy(value,message){
 }
 
 
-function showToast(message){
 
-  const toast =
-    document.getElementById("toast");
+/* COPY */
 
-  toast.textContent = message;
+function copyText(value){
 
-  toast.classList.add("show");
+  if(
+    navigator.clipboard &&
+    window.isSecureContext
+  ){
 
-  setTimeout(function(){
+    navigator.clipboard
+      .writeText(value)
 
-    toast.classList.remove("show");
+      .then(function(){
 
-  },2000);
+        showToast(
+          "copy:" + value
+        );
+
+      })
+
+      .catch(function(){
+
+        fallbackCopy(value);
+
+      });
+
+  }else{
+
+    fallbackCopy(value);
+
+  }
 }
 
 
-window.addEventListener("load",function(){
+function copyAmount(){
 
-  const modal =
-    document.getElementById("noticeModal");
+  copyText(amount);
 
-  if(modal &&
-     typeof modal.showModal === "function"){
+}
 
-    modal.showModal();
+
+function copyVPA(){
+
+  copyText(vpa);
+
+}
+
+
+
+/* UTR */
+
+function showUTRMessage(){
+
+  document.getElementById(
+    "utrMessage"
+  ).style.display = "block";
+
+}
+
+
+function digitsOnly(){
+
+  const input =
+    document.getElementById("utr");
+
+  input.value =
+    input.value
+      .replace(/\D/g,"")
+      .slice(0,12);
+
+}
+
+
+
+/* SUBMIT TEST UTR */
+
+function submitUTR(){
+
+  const input =
+    document.getElementById("utr");
+
+  const message =
+    document.getElementById("utrMessage");
+
+  const button =
+    document.getElementById("submitBtn");
+
+  const value =
+    input.value.trim();
+
+
+  if(!/^\d{12}$/.test(value)){
+
+    message.textContent =
+      "input 12 digits";
+
+    message.style.display =
+      "block";
+
+    input.focus();
+
+    return;
 
   }
 
-});
+
+  message.style.display =
+    "none";
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "Checking...";
 
 
-function closeModal(){
+  document.getElementById("processing")
+    .style.display = "flex";
 
-  document
-    .getElementById("noticeModal")
-    .close();
+
+  document.getElementById("processingText")
+    .textContent =
+    "Processing submitted test UTR...";
+
+
+  setTimeout(function(){
+
+    document.getElementById("processingText")
+      .textContent =
+      "Verification pending. Please wait.";
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "Submit UTR";
+
+  },2500);
 
 }
 
+
+
+/* COUNTDOWN */
 
 let totalSeconds = 599;
 
@@ -645,15 +999,20 @@ function updateCountdown(){
     totalSeconds % 60;
 
 
-  document.getElementById("min").textContent =
+  document.getElementById("min")
+    .textContent =
     String(minutes).padStart(2,"0");
 
-  document.getElementById("sec").textContent =
+
+  document.getElementById("sec")
+    .textContent =
     String(seconds).padStart(2,"0");
 
 
   if(totalSeconds > 0){
+
     totalSeconds--;
+
   }
 
 }
@@ -665,33 +1024,6 @@ setInterval(
   updateCountdown,
   1000
 );
-
-
-function submitReference(){
-
-  const value =
-    document
-      .getElementById("reference")
-      .value
-      .trim();
-
-
-  if(!/^\d{12}$/.test(value)){
-
-    showToast(
-      "Enter a 12-digit test reference"
-    );
-
-    return;
-
-  }
-
-
-  showToast(
-    "Reference received — verification pending"
-  );
-
-}
 
 </script>
 
