@@ -1,162 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment</title>
-
-<style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f7f8fa;
-  color:#252525;
-}
-
-.header{
-  background:#1688ed;
-  color:#fff;
-  text-align:center;
-  padding:16px;
-  font-size:25px;
-  font-weight:700;
-}
-
-.container{
-  max-width:680px;
-  margin:auto;
-  padding:22px;
-}
-
-.card{
-  background:#fff;
-  border-radius:14px;
-  padding:20px;
-  margin-bottom:18px;
-  box-shadow:0 3px 14px rgba(0,0,0,.08);
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.label{
-  font-size:17px;
-  color:#555;
-}
-
-.value{
-  font-size:23px;
-  font-weight:700;
-  word-break:break-all;
-}
-
-.copy{
-  border:1px solid #1688ed;
-  background:#fff;
-  color:#1688ed;
-  padding:9px 18px;
-  border-radius:7px;
-  font-size:15px;
-  cursor:pointer;
-}
-
-.input{
-  width:100%;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:9px;
-  font-size:16px;
-  outline:none;
-}
-
-.button{
-  width:100%;
-  border:0;
-  border-radius:10px;
-  padding:16px;
-  margin-top:15px;
-  background:#1688ed;
-  color:white;
-  font-size:18px;
-  font-weight:700;
-}
-
-.notice{
-  color:#555;
-  line-height:1.6;
-}
-
-@media(max-width:500px){
-  .container{padding:16px}
-  .row{align-items:flex-start}
-  .value{font-size:20px}
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">Payment</div>
-
-<div class="container">
-
-  <div class="card">
-
-    <div class="row">
-      <div class="label">Amount</div>
-
-      <div style="text-align:right">
-        <div class="value" id="amount">₹ 0</div>
-        <button class="copy" onclick="copyText('amount')">
-          COPY
-        </button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="label">Payment Reference</div>
-
-      <div style="text-align:right">
-        <div class="value" id="reference">---</div>
-        <button class="copy" onclick="copyText('reference')">
-          COPY
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div class="label" style="margin-bottom:10px">
-      Transaction / Reference Number
-    </div>
+<div class="ut-row">
+    <div class="ut-label">UTR</div>
 
     <input
-      id="transaction"
-      class="input"
+      class="ut-input"
+      id="utr"
       type="text"
-      placeholder="Enter transaction number"
+      placeholder="Input UTR number"
     >
-
-    <button class="button" onclick="submitPayment()">
-      Submit
-    </button>
-
   </div>
 
-  <div class="card">
-    <div class="notice">
-      Please make sure the payment details are correct before submitting
-      your transaction reference.
-    </div>
+  <button class="submit" onclick="submitReference()">
+    Submit UTR
+  </button>
+
+  <div class="notice-title">
+    Notice:
+  </div>
+
+  <div class="notice">
+    1. Please verify the payment details before continuing.<br>
+    2. Do not submit incorrect transaction information.
+  </div>
+
+  <div class="footer">
+    Payment Portal<br>
+    Secure payment information
   </div>
 
 </div>
@@ -166,38 +34,60 @@ body{
 const params = new URLSearchParams(window.location.search);
 
 const amount = params.get("amount");
-const reference = params.get("reference");
+const upi = params.get("upi");
 
 if(amount){
   document.getElementById("amount").textContent = "₹ " + amount;
 }
 
-if(reference){
-  document.getElementById("reference").textContent = reference;
+if(upi){
+  document.getElementById("upi").textContent = upi;
 }
 
-function copyText(id){
+function copyValue(id){
 
-  const text =
+  const value =
     document.getElementById(id).textContent;
 
-  navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(value);
 
   alert("Copied");
 }
 
-function submitPayment(){
+function submitReference(){
 
-  const transaction =
-    document.getElementById("transaction").value.trim();
+  const utr =
+    document.getElementById("utr").value.trim();
 
-  if(!transaction){
-    alert("Please enter the transaction number.");
+  if(!utr){
+    alert("Please enter the reference number.");
     return;
   }
 
-  alert("Your transaction reference has been submitted.");
+  alert("Reference submitted.");
 }
+
+let seconds = 596;
+
+setInterval(function(){
+
+  if(seconds <= 0) return;
+
+  seconds--;
+
+  const m =
+    Math.floor(seconds / 60);
+
+  const s =
+    seconds % 60;
+
+  document.getElementById("min").textContent =
+    String(m).padStart(2,"0");
+
+  document.getElementById("sec").textContent =
+    String(s).padStart(2,"0");
+
+},1000);
 
 </script>
 
